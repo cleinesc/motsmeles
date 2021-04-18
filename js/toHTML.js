@@ -1,38 +1,32 @@
-//input : number, le nombre de cases vides d'affilée
-//output : string, un bout de code à destination innerHTML
-let createEmptyDiv = function(times)  {
-   let myString = ''
-    while(times>0){
-        myString +='<div></div>'
-        times--
+let objGrid = [
+    [1,"e","t","e"],
+    [1,1,"o",1],
+    [1,1,"u",1],
+    ["t","a","t","a"],
+    [1,1,"o",1],
+    [1,1,"u",1]
+]
+
+const myFunction2 = function(myObj){
+    let html = ''
+
+    const myRows = myObj[0].length
+    const myCols = myObj.length
+
+    for(let cpt1=0; cpt1<myRows; cpt1++){
+        for(let cpt2=0; cpt2<myCols; cpt2++){
+            let isChar = myObj[cpt2][cpt1]
+            if(isChar!=1) {
+                html += '<div>'+isChar+'</div>'
+            } else {
+                html += '<div></div>'
+            }
+           
+        }
     }
-    
-    return myString
+
+
+    return html
 }
 
-createEmptyDiv(5)
-
-//input : string, une lettre
-//output : string, un bout de code 
-let createFilledDiv = function(letter) {
-    return '<div>'+ letter + '</div>'
-}
-
-//input : tableau, format ['E','T','E']
-//output : string, un bout de code à destination innerHTML
-let createStringDiv = function(myTab){
-    let myString = ''
-    let letters = myTab.forEach(letter => {
-        myString += createFilledDiv(letter)
-    });
-    return myString;
-}
-
-
-
-let setGrid = function(){
-    let content = createEmptyDiv(6)+ createStringDiv(['E','T','E'])+ createEmptyDiv(3)
-    document.getElementById("container").innerHTML = content
-}
-
-setGrid()
+document.getElementById("container").innerHTML = myFunction2(objGrid)
